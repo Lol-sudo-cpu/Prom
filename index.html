@@ -2,23 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Trade Request</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incoming Trade Proposal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="trade-window" class="trade-window">
-        <h2>Trade Request</h2>
-        <p>User "Prom Date" wants to trade: <strong>Your Company</strong></p>
-        <p>For: <strong>A Magical Night</strong></p>
-        <div class="button-container">
-            <button id="accept-btn">Accept</button>
-            <button id="decline-btn">Decline</button>
-        </div>
-    </div>
+    <div id="game-overlay">
+        <div id="trade-container">
+            <div id="trade-window">
+                
+                <div class="user-side">
+                    <h3>[Her GitHub Username] (Licensed)</h3>
+                    <div class="grid-container left-grid">
+                        <div class="grid-item add-icon"><span>+</span></div>
+                        <div class="grid-item"></div><div class="grid-item"></div>
+                        <div class="grid-item"></div><div class="grid-item"></div>
+                        <div class="grid-item"></div><div class="grid-item"></div>
+                        <div class="grid-item"></div><div class="grid-item"></div>
+                    </div>
+                </div>
 
-    <div id="success-screen" class="hidden">
-        <h1>Trade Accepted! 💖</h1>
-        <p>See you at prom!</p>
+                <div id="trade-center">
+                    <p>TRADE</p>
+                    <div class="trade-arrows">&#8635;</div> </div>
+
+                <div class="user-side">
+                    <h3>[Your GitHub Username] (Licensed)</h3>
+                    <div class="grid-container right-grid">
+                        <div class="grid-item offer-text"><span>A Magical<br>Night</span></div>
+                        <div class="grid-item"></div><div class="grid-item"></div>
+                        <div class="grid-item"></div><div class="grid-item"></div>
+                        <div class="grid-item"></div><div class="grid-item"></div>
+                        <div class="grid-item"></div><div class="grid-item"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button id="decline-btn" class="btn-decline">Decline</button>
+                <button id="accept-btn" class="btn-accept">Accept</button>
+            </div>
+        </div>
+
+        <div id="success-overlay" class="hidden">
+            <h1>TRADE CONFIRMED! 💖</h1>
+            <p>You've received: <strong>A Prom Date</strong>.</p>
+        </div>
     </div>
 
     <script src="script.js"></script>
