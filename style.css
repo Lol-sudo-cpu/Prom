@@ -1,33 +1,119 @@
+/* Base Layout & Aesthetic */
 body {
-    background-color: #f0f2f5;
-    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif; /* You can find a more game-like font later */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    background-color: #f7f3e8; /* Background light cream color from the image */
 }
 
-.trade-window {
-    background: white;
-    padding: 30px;
+/* 1. Main Pink Box from Image */
+#trade-container {
+    background-color: white;
+    border: 6px solid #ff007f; /* The bright pink border */
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    text-align: center;
-    border: 4px solid #4a90e2;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.button-container { display: flex; gap: 15px; margin-top: 20px; }
+#trade-window {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+/* 2. Side Colors (User Names and Grid Outline) */
+.user-side h3 {
+    text-align: left;
+    color: #ff007f; /* Matching the user-text pink color */
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+/* 3. The 3x3 Grid (Pinks and Purples) */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+.grid-item {
+    width: 70px; /* Small square slots from the image */
+    height: 70px;
+    background-color: #ffcccc; /* Light pink grid item background */
+    border: 3px solid #ff99cc; /* Slightly darker pink grid borders */
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Special Offer Grid Item: Make the proposal stand out slightly */
+.offer-text span {
+    font-size: 0.9rem;
+    color: #ff007f;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* 4. Center 'Trade' Text and Arrows */
+#trade-center {
+    text-align: center;
+    color: #ff007f; /* Arrow/Text pink color */
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.trade-arrows {
+    font-size: 4rem;
+    line-height: 0.8;
+}
+
+/* 5. The Red & Green Buttons */
+.button-container {
+    display: flex;
+    gap: 20px;
+}
 
 button {
-    padding: 10px 25px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
+    padding: 12px 30px;
+    font-size: 1.1rem;
     font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    color: white;
 }
 
-#accept-btn { background: #4caf50; color: white; }
-#decline-btn { background: #f44336; color: white; }
+.btn-decline {
+    background-color: #d9534f; /* Specific red from screenshot */
+    border-bottom: 4px solid #b94441; /* Darker red bottom border for 3D look */
+}
 
-.hidden { display: none; }
+.btn-accept {
+    background-color: #5cb85c; /* Specific green from screenshot */
+    border-bottom: 4px solid #4cae4c; /* Darker green bottom border for 3D look */
+}
+
+/* 6. Success Screen */
+.hidden { display: none !important; }
+
+#success-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(255, 192, 203, 0.95); /* Fullscreen pink */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
