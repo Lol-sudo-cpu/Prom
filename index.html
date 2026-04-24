@@ -290,8 +290,8 @@
         // --- DECLINE BUTTON LOGIC ---
         let decline_count = 0;
         const decline_messages = [
-            "Are you sure you want to decline?", 
-            "Think carefully!", 
+            "You really want to decline?", 
+            "I DONT THINK SO ", 
             "Error: Cannot decline this trade.", 
             "Just click accept!"
         ];
@@ -341,7 +341,7 @@
         });
 
         // --- ACCEPT & COUNTDOWN LOGIC ---
-        const prom_date = new Date("May 23, 2026 19:00:00").getTime();
+        const prom_date = new Date("May 30, 2026 18:00:00").getTime();
         const countdown_display = document.getElementById('countdown_display');
 
         function update_countdown() {
