@@ -1,35 +1,32 @@
-const declineBtn = document.getElementById('decline-btn');
-const acceptBtn = document.getElementById('accept-btn');
-const tradeContainer = document.getElementById('trade-container');
-const successOverlay = document.getElementById('success-overlay');
+const btn_decline = document.getElementById('btn_decline');
+const btn_accept = document.getElementById('btn_accept');
+const trade_ui_container = document.getElementById('trade_ui_container');
+const success_screen = document.getElementById('success_screen');
 
-let declineCount = 0;
-const messages = [
-    "Are you sure?",
-    "Wait... really?",
-    "Think of the magical night!",
-    "One more chance...?",
-    "System Error: Cannot Decline." // Final, prankish message.
+let decline_count = 0;
+const decline_messages = [
+    "Are you sure?", 
+    "You can't decline this trade!", 
+    "Try the green button instead.", 
+    "System Error: Must accept."
 ];
 
-// 1. Logic for the Decline Button
-declineBtn.addEventListener('click', () => {
-    // Show an alert/modal with the custom message
-    alert(messages[declineCount]);
+btn_decline.addEventListener('click', () => {
+    // Shows a pop-up alert
+    alert(decline_messages[decline_count % decline_messages.length]);
+    decline_count++;
     
-    // Increment count to show next message on next click
-    if (declineCount < messages.length - 1) {
-        declineCount++;
-    } else {
-        // Option: Change text of the accept button as the 'final solution'
-        declineBtn.innerText = "Error (Press Accept)";
-    }
+    // Makes the button jump away from the mouse after the first click
+    btn_decline.style.position = 'absolute';
+    btn_decline.style.top = Math.random() * 80 + 'vh';
+    btn_decline.style.left = Math.random() * 80 + 'vw';
 });
 
-// 2. Logic for the Accept Button
-acceptBtn.addEventListener('click', () => {
-    // Hide the trade screen completely
-    tradeContainer.classList.add('hidden');
-    // Show the fullscreen confirmation overlay
-    successOverlay.classList.remove('hidden');
+btn_accept.addEventListener('click', () => {
+    // Hides the trade window and shows the success screen
+    trade_ui_container.classList.add('hidden');
+    success_screen.classList.remove('hidden');
+    
+    // Changes the background to a celebratory pink
+    document.body.style.backgroundColor = "#ff99cc"; 
 });
