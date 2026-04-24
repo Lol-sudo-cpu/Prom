@@ -14,7 +14,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #a3d5ff; /* Game sky background */
+            background-color: #a3d5ff; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,18 +22,16 @@
             overflow: hidden;
         }
 
-        /* The main outer window */
         #trade_ui_container {
-            background-color: #fce4ec; /* Very light pink outer edge */
+            background-color: #fce4ec; 
             padding: 10px;
             border-radius: 10px;
             box-shadow: 0px 10px 30px rgba(0,0,0,0.2);
         }
 
-        /* The thick pink inner border */
         .trade_inner_box {
             background-color: white;
-            border: 8px solid #ed5393; /* Adopt Me Hot Pink */
+            border: 8px solid #ed5393; 
             width: 750px;
             padding: 20px;
             display: flex;
@@ -47,7 +45,6 @@
             align-items: center;
         }
 
-        /* Player panels */
         .player_side {
             width: 42%;
             display: flex;
@@ -62,29 +59,27 @@
             letter-spacing: 0.5px;
         }
 
-        /* The 3x3 Grid */
         .grid_container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, 1fr);
-            gap: 4px; /* Creates the pink grid lines */
-            background-color: #ed5393; /* The grid line color */
+            gap: 4px; 
+            background-color: #ed5393; 
             border: 4px solid #ed5393;
             width: 100%;
             aspect-ratio: 1 / 1;
         }
 
-        /* The light pink empty squares */
         .grid_cell {
-            background-color: #fcaecf; /* Adopt Me Light Pink */
+            background-color: #fcaecf; 
             display: flex;
             justify-content: center;
             align-items: center;
+            text-align: center; /* ensures text centers perfectly */
         }
 
-        /* The green plus box */
         .green_plus_box {
-            background-color: #63b955; /* Adopt Me Green */
+            background-color: #63b955; 
             width: 75%;
             height: 75%;
             border-radius: 6px;
@@ -95,10 +90,15 @@
             font-size: 45px;
             line-height: 0;
             padding-bottom: 5px;
-            box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15); /* 3D effect */
+            box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15); 
+            cursor: pointer; /* Makes it look clickable */
+            transition: transform 0.1s;
         }
 
-        /* Your offer text */
+        .green_plus_box:active {
+            transform: scale(0.95); /* Click animation */
+        }
+
         .offer_text {
             color: white;
             text-align: center;
@@ -107,7 +107,6 @@
             line-height: 1.2;
         }
 
-        /* Center divider */
         .trade_divider {
             display: flex;
             flex-direction: column;
@@ -126,7 +125,6 @@
             margin-top: 10px;
         }
 
-        /* Buttons */
         .trade_actions {
             display: flex;
             justify-content: center;
@@ -141,7 +139,7 @@
             border: none;
             color: white;
             cursor: pointer;
-            box-shadow: inset 0 -4px 0 rgba(0,0,0,0.2); /* 3D game button effect */
+            box-shadow: inset 0 -4px 0 rgba(0,0,0,0.2); 
             transition: transform 0.1s;
         }
 
@@ -150,8 +148,8 @@
             box-shadow: inset 0 0px 0 rgba(0,0,0,0.2);
         }
 
-        .decline { background-color: #d84c4c; } /* Adopt Me Red */
-        .accept { background-color: #63b955; }  /* Adopt Me Green */
+        .decline { background-color: #d84c4c; } 
+        .accept { background-color: #63b955; }  
 
         .hidden { display: none !important; }
 
@@ -162,6 +160,21 @@
             padding: 40px;
             border-radius: 20px;
             border: 8px solid #ed5393;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Styling for the new countdown */
+        #countdown_display {
+            font-size: 24px;
+            color: #ed5393;
+            background-color: #fce4ec;
+            padding: 15px 30px;
+            border-radius: 12px;
+            border: 4px solid #fcaecf;
+            margin-top: 20px;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -173,7 +186,7 @@
             <div class="trade_content">
                 <div class="player_side">
                     <div class="player_name">Diti (Licensed)</div>
-                    <div class="grid_container">
+                    <div class="grid_container" id="left_grid">
                         <div class="grid_cell"><div class="green_plus_box">+</div></div>
                         <div class="grid_cell"></div><div class="grid_cell"></div>
                         <div class="grid_cell"></div><div class="grid_cell"></div><div class="grid_cell"></div>
@@ -207,15 +220,18 @@
 
     <div id="success_screen" class="hidden">
         <h1 style="font-size: 40px; margin-bottom: 10px;">TRADE SUCCESSFUL!</h1>
-        <p style="font-size: 20px; color: #333;">See you at Prom.</p>
+        <p style="font-size: 20px; color: #333; margin: 0;">See you at Prom.</p>
+        <div id="countdown_display">Loading timer...</div>
     </div>
 
     <script>
+        // --- BUTTON & UI VARIABLES ---
         const btn_decline = document.getElementById('btn_decline');
         const btn_accept = document.getElementById('btn_accept');
         const trade_ui_container = document.getElementById('trade_ui_container');
         const success_screen = document.getElementById('success_screen');
 
+        // --- DECLINE BUTTON LOGIC ---
         let decline_count = 0;
         const decline_messages = [
             "Are you sure you want to decline?", 
@@ -228,16 +244,75 @@
             alert(decline_messages[decline_count % decline_messages.length]);
             decline_count++;
             
-            // Moves the button after the first click so she can't easily click it again
             btn_decline.style.position = 'absolute';
             btn_decline.style.top = Math.random() * 70 + 10 + 'vh';
             btn_decline.style.left = Math.random() * 70 + 10 + 'vw';
         });
 
+        // --- INTERACTIVE "+" LOGIC ---
+        const left_grid = document.getElementById('left_grid');
+        let current_cell_idx = 0;
+        
+        // Array of items to pop into the grid when the + is clicked
+        const items_to_add = [
+            "💐<br>Flowers", 
+            "🐶<br>Pet", 
+            "🫂<br>Hug", 
+            "💋<br>Kiss", 
+            "🍫<br>Choc"
+        ];
+
+        left_grid.addEventListener('click', (e) => {
+            const plus_btn = e.target.closest('.green_plus_box');
+            if (!plus_btn) return; // Ignore clicks if they aren't on the +
+
+            const cells = left_grid.querySelectorAll('.grid_cell');
+            const current_cell = cells[current_cell_idx];
+
+            // 1. Replace the + button with the text
+            current_cell.innerHTML = items_to_add[current_cell_idx];
+            current_cell.classList.add('offer_text');
+
+            current_cell_idx++;
+
+            // 2. Add a new + button to the NEXT cell (if we have items left)
+            if (current_cell_idx < items_to_add.length && current_cell_idx < cells.length) {
+                cells[current_cell_idx].innerHTML = '<div class="green_plus_box">+</div>';
+            }
+        });
+
+        // --- ACCEPT & COUNTDOWN LOGIC ---
+        
+        // CHANGE THIS TO YOUR ACTUAL PROM DATE & TIME!
+        // Format: "Month DD, YYYY HH:MM:SS"
+        const prom_date = new Date("May 23, 2026 19:00:00").getTime();
+        const countdown_display = document.getElementById('countdown_display');
+
+        function update_countdown() {
+            const now = new Date().getTime();
+            const distance = prom_date - now;
+
+            if (distance < 0) {
+                countdown_display.innerHTML = "IT'S PROM TIME!";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdown_display.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s until Prom`;
+        }
+
         btn_accept.addEventListener('click', () => {
             trade_ui_container.classList.add('hidden');
             success_screen.classList.remove('hidden');
             document.body.style.backgroundColor = "#ffcce6"; 
+            
+            // Start the countdown once the screen is visible
+            update_countdown();
+            setInterval(update_countdown, 1000);
         });
     </script>
 </body>
