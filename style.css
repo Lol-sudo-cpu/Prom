@@ -1,21 +1,13 @@
 * { 
     box-sizing: border-box; 
-}
-
-/* Defining variables for consistency with the reference image */
-:root {
-    --magenta-pink: #d74d8a; /* The thin text and border color */
-    --window-border: #f0c3d9; /* The subtle, lighter pink main border */
-    --bg-blue: #71b9e5; /* The default blue background from before */
-    --button-radius: 12px;
+    font-family: 'Nunito', sans-serif;
 }
 
 body {
     margin: 0;
     padding: 0;
-    /* Keeps the game background blue, but we'll focus style inside the window */
-    background-color: var(--bg-blue);
-    font-family: 'Nunito Sans', sans-serif;
+    /* Soft background to make the window pop like the screenshot */
+    background: linear-gradient(135deg, #a8e0ff 0%, #f9f9f9 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,176 +15,131 @@ body {
     overflow: hidden;
 }
 
+/* The main window matches the thick pink border from the image */
 #trade_ui_container {
     background-color: white;
-    width: 800px;
-    border-radius: 20px;
-    /* Thick, lighter pink main border like the reference image */
-    border: 15px solid var(--window-border);
-    padding: 15px;
+    width: 750px;
+    border: 8px solid #ee5a96; /* Exact Adopt Me hot pink */
+    padding: 20px 20px 30px 20px;
     display: flex;
     flex-direction: column;
 }
 
-/* Updated header: Thin, magenta all-caps text */
-.trade_header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-#trade_title {
-    color: var(--magenta-pink);
-    font-size: 20px;
-    font-weight: 600; /* Medium-bold, thin feel */
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.trade_panels {
+.trade_content {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
 }
 
-.player_panel {
-    width: 48%; /* Adjusting width for the border */
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 10px;
-    /* Heavy hot-pink panel borders from the reference image */
-    border: 8px solid var(--magenta-pink);
+.player_side {
+    width: 42%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Thin magenta name text */
 .player_name {
-    color: var(--magenta-pink);
-    font-size: 16px;
-    font-weight: 300; /* Lightest font weight */
-    margin-bottom: 15px;
-    text-transform: capitalize;
+    color: #ee5a96;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 8px;
 }
 
-.offer_grid {
+/* The 3x3 Grid matching the image perfectly */
+.grid_container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* 3x2 grid like Adopt Me */
-    grid-template-rows: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 4px; /* The thickness of the pink lines between cells */
+    background-color: #ee5a96; /* Creates the pink grid lines */
+    border: 4px solid #ee5a96; /* Outer grid boundary */
     width: 100%;
+    aspect-ratio: 1 / 1; /* Keeps it a perfect square */
 }
 
-.item_box {
-    background-color: #f7e8ef; /* Light pink background for item cells */
-    border: 2px solid var(--magenta-pink); /* Inner cell border color */
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-weight: bold;
-    color: var(--magenta-pink);
-    padding: 5px;
-    aspect-ratio: 1/1; /* Makes them square */
-}
-
-/* Basic grey cell for empty ones without the plus icon */
-.item_box.empty {
-    background-color: #f7f9fc;
-}
-
-/* Styling the green "+" icon inside an empty box */
-.item_box.empty .add_plus_icon {
-    width: 40px;
-    height: 40px;
-    background-color: #71cf79; /* Green from reference */
-    border-radius: 10px;
-    color: white;
-    font-size: 30px;
-    font-weight: 600;
+/* The light pink empty squares inside the grid */
+.grid_cell {
+    background-color: #fcadd0; /* Exact Adopt Me light pink */
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
 }
 
-.item_box.empty .add_plus_icon::after {
-    content: "+";
+/* The text for your item inside the light pink box */
+.offer_text {
     color: white;
-    font-size: 30px;
-    margin-bottom: 3px;
+    font-weight: 800;
+    text-align: center;
+    font-size: 16px;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
 }
 
-/* Updated Trade Divider: Thin magenta text and simple icon */
+/* The specific green square with the plus sign */
+.green_plus_box {
+    background-color: #61b854; /* Exact Adopt Me green */
+    width: 70%;
+    height: 70%;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 40px;
+    font-weight: 800;
+    padding-bottom: 5px; /* Centers the '+' vertically */
+}
+
+/* The center divider text and arrows */
 .trade_divider {
-    width: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 50px; /* Aligns vertically with names */
+    color: #ee5a96;
 }
 
-.divider_top_text {
-    color: var(--magenta-pink);
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 5px;
-    text-transform: uppercase;
+.trade_text {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
-.trade_arrow_icon {
-    font-size: 40px;
-    color: var(--magenta-pink);
-    font-weight: bold;
+.trade_icon {
+    font-size: 45px;
+    font-weight: 800;
+    line-height: 0.8;
+    margin-top: 5px;
 }
 
+/* The Buttons */
 .trade_actions {
     display: flex;
     justify-content: center;
-    gap: 30px; /* Space between buttons */
+    gap: 15px;
     margin-top: 25px;
 }
 
-/* Simplified, rounded but flat buttons from the reference image */
 .adopt_btn {
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 20px;
-    padding: 15px 40px;
-    border-radius: var(--button-radius); /* specific, large corner radius */
+    font-size: 18px;
+    font-weight: 800;
+    padding: 8px 35px;
+    border-radius: 8px;
     border: none;
-    cursor: pointer;
     color: white;
-    text-transform: capitalize;
-    font-weight: 600; /* Matches text weight from reference */
+    cursor: pointer;
 }
 
-.decline { background-color: #e5534b; } /* Specific Red from image */
-.accept { background-color: #68aa52; }  /* Specific Green from image */
+.decline { background-color: #d84c4c; } /* Exact Adopt Me red */
+.accept { background-color: #61b854; } /* Exact Adopt Me green */
 
-/* Hidden state and success screen (keeps previous celebratory feel) */
+/* Hide utility */
 .hidden { display: none !important; }
 
+/* Success screen styling */
 #success_screen {
     text-align: center;
+    color: #ee5a96;
 }
-
-/* Make success text thinner, magenta */
-.success_text {
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 50px;
-    font-weight: 600;
-    color: white;
-    text-shadow: 2px 2px 0 var(--magenta-pink);
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
-.success_subtext {
-    font-size: 24px;
-    color: white;
-    font-weight: 300;
-    text-transform: capitalize;
-}
+#success_screen h1 { font-size: 40px; margin-bottom: 0;}
+#success_screen p { font-size: 20px; font-weight: 700; color: #333;}
