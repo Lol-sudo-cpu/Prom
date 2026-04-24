@@ -4,43 +4,36 @@
     <meta charset="UTF-8">
     <title>Trade Request</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="trade_ui_container">
-        <div class="trade_header">
-            <h2 id="trade_title">TRADE</h2>
-        </div>
         
-        <div class="trade_panels">
-            <div class="player_panel left_panel">
+        <div class="trade_content">
+            <div class="player_side">
                 <div class="player_name">[Her Username] (Licensed)</div>
-                <div class="offer_grid">
-                    <div class="item_box current_item">
-                        <span class="item_text">A Magical Night</span>
+                <div class="grid_container">
+                    <div class="grid_cell">
+                        <div class="green_plus_box">+</div>
                     </div>
-                    <div class="item_box empty">
-                        <div class="add_plus_icon"></div>
-                    </div>
-                    <div class="item_box empty"></div>
-                    <div class="item_box empty"></div>
+                    <div class="grid_cell"></div><div class="grid_cell"></div>
+                    <div class="grid_cell"></div><div class="grid_cell"></div><div class="grid_cell"></div>
+                    <div class="grid_cell"></div><div class="grid_cell"></div><div class="grid_cell"></div>
                 </div>
             </div>
 
             <div class="trade_divider">
-                <div class="divider_top_text">TRADE</div>
-                <div class="trade_arrow_icon">⇄</div>
+                <div class="trade_text">TRADE</div>
+                <div class="trade_icon">⟲⟳</div> 
             </div>
 
-            <div class="player_panel right_panel">
+            <div class="player_side">
                 <div class="player_name">Leon (Licensed)</div>
-                <div class="offer_grid">
-                    <div class="item_box current_item">
-                        <span class="item_text">Prom Date</span>
-                    </div>
-                    <div class="item_box empty"></div>
-                    <div class="item_box empty"></div>
-                    <div class="item_box empty"></div>
+                <div class="grid_container">
+                    <div class="grid_cell offer_text">Prom<br>Date</div>
+                    <div class="grid_cell"></div><div class="grid_cell"></div>
+                    <div class="grid_cell"></div><div class="grid_cell"></div><div class="grid_cell"></div>
+                    <div class="grid_cell"></div><div class="grid_cell"></div><div class="grid_cell"></div>
                 </div>
             </div>
         </div>
@@ -52,8 +45,8 @@
     </div>
 
     <div id="success_screen" class="hidden">
-        <h1 class="success_text">TRADE CONFIRMED! 💖</h1>
-        <p class="success_subtext">You've received: A Prom Date.</p>
+        <h1>TRADE SUCCESSFUL!</h1>
+        <p>A Magical Night awaits.</p>
     </div>
 
     <script src="script.js"></script>
