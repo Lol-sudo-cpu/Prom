@@ -2,11 +2,20 @@
     box-sizing: border-box; 
 }
 
+/* Defining variables for consistency with the reference image */
+:root {
+    --magenta-pink: #d74d8a; /* The thin text and border color */
+    --window-border: #f0c3d9; /* The subtle, lighter pink main border */
+    --bg-blue: #71b9e5; /* The default blue background from before */
+    --button-radius: 12px;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #71b9e5; /* Adopt Me sky blue background */
-    font-family: 'Nunito', sans-serif;
+    /* Keeps the game background blue, but we'll focus style inside the window */
+    background-color: var(--bg-blue);
+    font-family: 'Nunito Sans', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,141 +24,175 @@ body {
 }
 
 #trade_ui_container {
-    background-color: #f7f9fc;
+    background-color: white;
     width: 800px;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    border: 5px solid #fff;
-    padding: 20px;
+    /* Thick, lighter pink main border like the reference image */
+    border: 15px solid var(--window-border);
+    padding: 15px;
     display: flex;
     flex-direction: column;
 }
 
+/* Updated header: Thin, magenta all-caps text */
 .trade_header {
     text-align: center;
-    font-family: 'Fredoka One', cursive;
-    color: #333;
-    font-size: 24px;
-    margin-top: 0;
     margin-bottom: 20px;
-    letter-spacing: 2px;
 }
 
-.trade_header h2 { margin: 0; }
+#trade_title {
+    color: var(--magenta-pink);
+    font-size: 20px;
+    font-weight: 600; /* Medium-bold, thin feel */
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
 .trade_panels {
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
-    background-color: #e3eaf2;
-    border-radius: 15px;
-    padding: 20px;
+    align-items: flex-start;
 }
 
 .player_panel {
-    width: 45%;
+    width: 48%; /* Adjusting width for the border */
     background-color: #fff;
     border-radius: 12px;
-    padding: 15px;
-    border: 3px solid #d1dce8;
+    padding: 10px;
+    /* Heavy hot-pink panel borders from the reference image */
+    border: 8px solid var(--magenta-pink);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* Thin magenta name text */
 .player_name {
-    font-family: 'Fredoka One', cursive;
-    color: #4a4a4a;
-    font-size: 20px;
+    color: var(--magenta-pink);
+    font-size: 16px;
+    font-weight: 300; /* Lightest font weight */
     margin-bottom: 15px;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .offer_grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr; /* 3x2 grid like Adopt Me */
     grid-template-rows: 1fr 1fr;
     gap: 10px;
     width: 100%;
-    min-height: 160px;
 }
 
 .item_box {
-    background-color: #f0f4f8;
-    border: 2px solid #b0c4de;
-    border-radius: 10px;
+    background-color: #f7e8ef; /* Light pink background for item cells */
+    border: 2px solid var(--magenta-pink); /* Inner cell border color */
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     font-weight: bold;
-    color: #555;
-    padding: 10px;
+    color: var(--magenta-pink);
+    padding: 5px;
+    aspect-ratio: 1/1; /* Makes them square */
 }
 
+/* Basic grey cell for empty ones without the plus icon */
 .item_box.empty {
-    border: 2px dashed #b0c4de;
-    background-color: transparent;
+    background-color: #f7f9fc;
 }
 
-.trade_divider {
+/* Styling the green "+" icon inside an empty box */
+.item_box.empty .add_plus_icon {
+    width: 40px;
+    height: 40px;
+    background-color: #71cf79; /* Green from reference */
+    border-radius: 10px;
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.item_box.empty .add_plus_icon::after {
+    content: "+";
+    color: white;
+    font-size: 30px;
+    margin-bottom: 3px;
+}
+
+/* Updated Trade Divider: Thin magenta text and simple icon */
+.trade_divider {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 50px;
-    color: #8da4be;
+    padding-top: 50px; /* Aligns vertically with names */
+}
+
+.divider_top_text {
+    color: var(--magenta-pink);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.trade_arrow_icon {
+    font-size: 40px;
+    color: var(--magenta-pink);
     font-weight: bold;
-    padding: 0 10px;
 }
 
 .trade_actions {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 30px; /* Space between buttons */
     margin-top: 25px;
-    padding: 0 20px;
 }
 
-/* The chunky 3D buttons */
+/* Simplified, rounded but flat buttons from the reference image */
 .adopt_btn {
-    font-family: 'Fredoka One', cursive;
-    font-size: 22px;
-    padding: 15px 50px;
-    border-radius: 15px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+    padding: 15px 40px;
+    border-radius: var(--button-radius); /* specific, large corner radius */
     border: none;
     cursor: pointer;
     color: white;
-    text-transform: uppercase;
-    box-shadow: 0 6px 0 rgba(0,0,0,0.2);
-    transition: transform 0.1s, box-shadow 0.1s;
+    text-transform: capitalize;
+    font-weight: 600; /* Matches text weight from reference */
 }
 
-.adopt_btn:active {
-    transform: translateY(6px);
-    box-shadow: 0 0 0 rgba(0,0,0,0.2);
-}
+.decline { background-color: #e5534b; } /* Specific Red from image */
+.accept { background-color: #68aa52; }  /* Specific Green from image */
 
-.decline { background-color: #ff4d4d; }
-.decline:hover { background-color: #ff3333; }
-
-.accept { background-color: #4caf50; }
-.accept:hover { background-color: #45a049; }
-
+/* Hidden state and success screen (keeps previous celebratory feel) */
 .hidden { display: none !important; }
 
 #success_screen {
     text-align: center;
-    font-family: 'Fredoka One', cursive;
 }
 
+/* Make success text thinner, magenta */
 .success_text {
+    font-family: 'Nunito Sans', sans-serif;
     font-size: 50px;
+    font-weight: 600;
     color: white;
-    text-shadow: 3px 3px 0 #000;
+    text-shadow: 2px 2px 0 var(--magenta-pink);
     margin-bottom: 10px;
+    text-transform: uppercase;
 }
 
 .success_subtext {
     font-size: 24px;
     color: white;
-    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    text-transform: capitalize;
 }
