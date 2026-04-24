@@ -2,66 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Incoming Trade Proposal</title>
+    <title>Trade Request</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="game-overlay">
-        <div id="trade-container">
-            <div id="trade-window">
-                
-                <div class="user-side">
-                    <h3>[Her GitHub Username] (Licensed)</h3>
-                    <div class="grid-container left-grid">
-                        <div class="grid-item add-icon"><span>+</span></div>
-                        <div class="grid-item"></div><div class="grid-item"></div>
-                        <div class="grid-item"></div><div class="grid-item"></div>
-                        <div class="grid-item"></div><div class="grid-item"></div>
-                        <div class="grid-item"></div><div class="grid-item"></div>
+    <div id="trade_ui_container">
+        <div class="trade_header">
+            <h2>TRADE</h2>
+        </div>
+        
+        <div class="trade_panels">
+            <div class="player_panel left_panel">
+                <div class="player_name">[Her Name]</div>
+                <div class="offer_grid">
+                    <div class="item_box">
+                        <span class="item_text">A Magical Night</span>
                     </div>
-                </div>
-
-                <div id="trade-center">
-                    <p>TRADE</p>
-                    <div class="trade-arrows">&#8635;</div> </div>
-
-                <div class="user-side">
-                    <h3>[Your GitHub Username] (Licensed)</h3>
-                    <div class="grid-container right-grid">
-                        <div class="grid-item offer-text"><span>A Magical<br>Night</span></div>
-                        <div class="grid-item"></div><div class="grid-item"></div>
-                        <div class="grid-item"></div><div class="grid-item"></div>
-                        <div class="grid-item"></div><div class="grid-item"></div>
-                        <div class="grid-item"></div><div class="grid-item"></div>
-                    </div>
+                    <div class="item_box empty"></div>
+                    <div class="item_box empty"></div>
+                    <div class="item_box empty"></div>
                 </div>
             </div>
 
-            <div class="button-container">
-                <button id="decline-btn" class="btn-decline">Decline</button>
-                <button id="accept-btn" class="btn-accept">Accept</button>
+            <div class="trade_divider">
+                <div class="arrows">⇄</div>
+            </div>
+
+            <div class="player_panel right_panel">
+                <div class="player_name">Leon</div>
+                <div class="offer_grid">
+                    <div class="item_box">
+                        <span class="item_text">Prom Date</span>
+                    </div>
+                    <div class="item_box empty"></div>
+                    <div class="item_box empty"></div>
+                    <div class="item_box empty"></div>
+                </div>
             </div>
         </div>
 
-        <div id="success-overlay" class="hidden">
-            <h1>TRADE CONFIRMED! 💖</h1>
-            <p>You've received: <strong>A Prom Date</strong>.</p>
+        <div class="trade_actions">
+            <button id="btn_decline" class="adopt_btn decline">Decline</button>
+            <button id="btn_accept" class="adopt_btn accept">Accept</button>
         </div>
+    </div>
+
+    <div id="success_screen" class="hidden">
+        <h1 class="success_text">TRADE SUCCESSFUL! 🎉</h1>
+        <p class="success_subtext">See you at Prom.</p>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-<div class="trade-window">
-    <h2>Trade Request</h2>
-    <p>[Her Username] (Licensed)</p>
-    <p>+</p>
-    <p>[Your Username] (Licensed)</p>
-    <p><strong>A Magical Night</strong></p>
-    
-    <div class="button-container">
-        <button id="decline-btn" style="background:#ff4d4d; color:white;">Decline</button>
-        <button id="accept-btn" style="background:#4caf50; color:white;">Accept</button>
-    </div>
-</div>
